@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <link type="text/css" href="themes/smoothness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+        <script type="text/javascript" language="javascript" src="jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" language="javascript" src="jquery-ui-1.8.19.custom.min.js"></script>
+        <script type="text/javascript" language="javascript" src="media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" language="javascript" src="media/js/Scroller.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=load"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                $('#dataTable').dataTable( {
+                   "bProcessing": true,
+                   "bDeferRender": true,
+                   "bJQueryUI": true,
+                   "sScrollY": "400px",
+                   "sDom": "frtS",
+                   "sAjaxSource": '../'
+                } );
+                $('#chosenDataTable').dataTable( {
+                   "bProcessing": true,
+                   "bDeferRender": true,
+                   "bJQueryUI": true,
+                   "sScrollY": "100px",
+                   "sDom": "frtS"
+                } );
+            } );
+        </script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                event_add = function(el) {
+                    var row = el.closest('tr');
+                    var title = row.children(':nth-child(4)').find('a').text();
+                    var date = row.children(':nth-child(7)').find('a').text();
+                    var time = (row.children(':nth-child(8)').find('a').text().indexOf("am") >= 0) ? 'am' : 'pm';
+                    $('#chosenDataTable').dataTable().fnAddData([title, date, time]);
+                };
+            });
+        </script>
+        <script type="text/javascript" language="javascript">
+                function load() {
+                    gapi.client.setApiKey('AIzaSyBSMbYnzl913ox4TUlYYkaXIi7Bi-Z2muM');
+                    msgbox("hi");
+                    gapi.client.load('calendar', 'v3', makeRequest);
+                }
+        </script>
+    </head>
+    <body>
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
+            <thead>
+                 <tr>
+                     <th width="18%">Session</th>
+                     <th width="6%">Board</th>
+                     <th width="6%">Type</th>
+                     <th width="30%">Title</th>
+                     <th width="8%">Exam Code</th>
+                     <th width="8%">Duration</th>
+                     <th width="12%">Date</th>
+                     <th width="12%">Start Time</th>
+                 </tr>
+             </thead>
+             <tbody>
+             </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="chosenDataTable">
+            <thead>
+                 <tr>
+                     <th width="30%">Title</th>
+                     <th width="12%">Date</th>
+                     <th width="6%">Start Time</th>
+                 </tr>
+             </thead>
+             <tbody>
+             </tbody>
+        </table>
+    </body>
+</html>
