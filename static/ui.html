@@ -16,13 +16,13 @@
                    "sDom": "frtS",
                    "sAjaxSource": '../'
                 } );
-                $('#chosenDataTable').dataTable( {
-                   "bProcessing": true,
-                   "bDeferRender": true,
-                   "bJQueryUI": true,
-                   "sScrollY": "100px",
-                   "sDom": "frtS"
-                } );
+//                $('#chosenDataTable').dataTable( {
+//                   "bProcessing": true,
+//                   "bDeferRender": true,
+//                   "bJQueryUI": true,
+//                   "sScrollY": "100px",
+//                   "sDom": "frtS"
+//                } );
             } );
         </script>
         <script type="text/javascript" language="javascript">
@@ -31,8 +31,10 @@
                     var row = el.closest('tr');
                     var title = row.children(':nth-child(4)').find('a').text();
                     var date = row.children(':nth-child(7)').find('a').text();
-                    var time = (row.children(':nth-child(8)').find('a').text().indexOf("am") >= 0) ? 'am' : 'pm';
-                    $('#chosenDataTable').dataTable().fnAddData([title, date, time]);
+                    var time = (row.children(':nth-child(8)').find('a').text().indexOf("am") >= 0) ? '09:00' : '13:00';
+                    var gcal_url = "https://www.google.com/calendar/render?ctext=" + escape(title + " on " + date + " at " + time)  +  "+&action=TEMPLATE&pprop=HowCreated:QUICKADD&pli=1&sf=true&output=xml";
+                    window.open(gcal_url, "gcal");
+//                    $('#chosenDataTable').dataTable().fnAddData([title, date, time]);
                 };
             });
         </script>
@@ -62,7 +64,7 @@
              </tbody>
         </table>
 
-        <table cellpadding="0" cellspacing="0" border="0" class="display" id="chosenDataTable">
+<!--        <table cellpadding="0" cellspacing="0" border="0" class="display" id="chosenDataTable">
             <thead>
                  <tr>
                      <th width="30%">Title</th>
@@ -72,6 +74,6 @@
              </thead>
              <tbody>
              </tbody>
-        </table>
+        </table>-->
     </body>
 </html>
