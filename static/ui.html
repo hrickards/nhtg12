@@ -1,6 +1,11 @@
 <html>
     <head>
+        <link type="text/css" href="demo_page.css" rel="stylesheet" />
+        <link type="text/css" href="demo_table_jui.css" rel="stylesheet" />
         <link type="text/css" href="themes/smoothness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+        <style type="text/css">
+            #csvLink {float: left}
+        </style>
         <script type="text/javascript" language="javascript" src="jquery-1.7.2.min.js"></script>
         <script type="text/javascript" language="javascript" src="jquery-ui-1.8.19.custom.min.js"></script>
         <script type="text/javascript" language="javascript" src="media/js/jquery.dataTables.js"></script>
@@ -12,7 +17,7 @@
                    "bProcessing": true,
                    "bDeferRender": true,
                    "bJQueryUI": true,
-                   "sScrollY": "400px",
+                   "sScrollY": window.innerHeight - 100 + 'px',
                    "sDom": "frtS",
                    "sAjaxSource": '../'
                 } );
@@ -47,6 +52,7 @@
         </script>
     </head>
     <body>
+        <div id="csvLink"><a href="exams_raw.csv">Raw data</a></div>
         <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
             <thead>
                  <tr>
